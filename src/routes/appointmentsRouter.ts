@@ -11,7 +11,7 @@ router.post('/appointment_create',auth, appointment_create)
 router.put('/appointment_update/:id', auth, appointment_update)
 router.delete('/appointment_delete/:id', auth, appointment_delete)
 
-export { router as routerAppointment }
+export { router as appointmentsRouter }
 
 
 

@@ -1,8 +1,11 @@
 import express from 'express';
 import 'dotenv/config'
-import { routerAppointment } from './routes/appointmentsRouter';
-import { router as customersRouter } from './routes/customersRouter';
-import { router as tattooartistRouter } from './routes/tattooartistRouter';
+import { router as employeesRouter } from './routes/employeesRouter';
+import { router as usersRouter } from "./routes/usersRouter";
+import { appointmentsRouter } from "./routes/appointmentsRouter";
+
+//import { router as customersRouter } from './routes/usersRouter';
+
 import { AppDataSource } from './database';
 import bodyParser from 'body-parser';
 
@@ -12,9 +15,9 @@ const PORT = process.env.PORT || 4000
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/customer', customersRouter);
-app.use('/artist', tattooartistRouter);
-app.use('/appointment', routerAppointment)
+app.use('/users', usersRouter);
+app.use('/artist', employeesRouter);
+app.use('/appointment', appointmentsRouter);
 
 app.get('/', (req, res) => {
   res.send('Home PageX');
