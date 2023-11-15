@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
-export class Portfolio1699795893645 implements MigrationInterface {
+export class Portfolio1700062266478 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
@@ -20,9 +20,10 @@ export class Portfolio1699795893645 implements MigrationInterface {
                 },
                 
                 {
-                    name: "imag",
-                    type: "varchar",
-                    length: "50",
+                  name: "imag",
+                  type: "varchar",
+                  length: "512",
+                  isUnique: true
                 },
                 {
                     name: "description",
@@ -56,8 +57,11 @@ export class Portfolio1699795893645 implements MigrationInterface {
             }),
             true
           );
+    
     }
+
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable("portfolios");
     }
+
 }

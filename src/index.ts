@@ -4,8 +4,6 @@ import { router as employeesRouter } from './routes/employeesRouter';
 import { router as usersRouter } from "./routes/usersRouter";
 import { appointmentsRouter } from "./routes/appointmentsRouter";
 
-//import { router as customersRouter } from './routes/usersRouter';
-
 import { AppDataSource } from './database';
 import bodyParser from 'body-parser';
 
