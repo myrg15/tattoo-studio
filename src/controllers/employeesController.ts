@@ -58,6 +58,14 @@ const login = async (req: Request, res: Response) => {
     });
   };
 }
+
+const getAllEmployees =  async (req: Request, res: Response) => {
+  const artist = await employeesRepository.find({
+    relations : ["user"]
+  })
+  res.status(200).json({ artist })
+}
+
 const getAllAppointment = async (req: Request, res: Response) => {
   try {
     const appointment_id = req.params.id;
@@ -85,4 +93,4 @@ const getAllAppointment = async (req: Request, res: Response) => {
   }
 };
 
-export { login, getAllAppointment }
+export { login, getAllAppointment, getAllEmployees }
