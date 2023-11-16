@@ -12,7 +12,7 @@ const appointmentRepository = AppDataSource.getRepository(Appointment);
 const employeesRepository = AppDataSource.getRepository(Employees)
 
 const register = async (req: Request, res: Response) => {
-  const { username, email, password, role, specialtyServices, phoneNumber } = req.body
+  const { username, email, password, role, specialtyServices, phone } = req.body
   try {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if (!emailRegex.test(email)) {
@@ -23,16 +23,17 @@ const register = async (req: Request, res: Response) => {
     new_users.email = email;
     new_users.password = bcrypt.hashSync(password, 10);
     new_users.role = role
+    new_users.phone_number = phone
     const user = await userRepository.save(new_users)
 
     if(!role || role == 'user'){
-      
+      return res.status(200).json({ message: 'User create success' })
     }
 
     const new_employee = new Employees()
     new_employee.user_id = user.id
     new_employee.specialty_services = specialtyServices
-    new_employee.phone_number = phoneNumber
+    new_employee.phone_number = phone
 
     await employeesRepository.save(new_employee)
 
@@ -80,7 +81,9 @@ const login = async (req: Request, res: Response) => {
   return res.json({
     success: true,
     message: "user logged succesfully",
-    token: token
+    token: token,
+    username : users.username,
+    role : users.role
   });
 }catch (error){
   return res.status(500).json({

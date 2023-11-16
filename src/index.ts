@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors'
 import 'dotenv/config'
 import { router as employeesRouter } from './routes/employeesRouter';
 import { router as usersRouter } from "./routes/usersRouter";
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 4000
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors())
 
 app.use('/users', usersRouter);
 app.use('/artist', employeesRouter);

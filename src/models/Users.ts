@@ -25,6 +25,11 @@ export class Users {
         default: 'user' 
     })
     role!: string
+
+    @Column({
+        nullable : true
+    })
+    phone_number!: string;
     
     @CreateDateColumn()
     create_at!: Date;
