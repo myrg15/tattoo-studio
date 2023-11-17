@@ -7,6 +7,7 @@ import { appointmentsRouter } from "./routes/appointmentsRouter";
 
 import { AppDataSource } from './database';
 import bodyParser from 'body-parser';
+import { desinGalleryRouter } from './routes/desingalleryRouter';
 
 const app = express();
 const PORT = process.env.PORT || 4000
@@ -18,7 +19,7 @@ app.use(cors())
 app.use('/users', usersRouter);
 app.use('/artist', employeesRouter);
 app.use('/appointment', appointmentsRouter);
-//app.use('/desingallery', desingalleryRouter);
+app.use('/desingallery', desinGalleryRouter);
 
 app.get('/', (req, res) => {
   res.send('Home PageX');
