@@ -18,6 +18,7 @@ app.use(cors())
 app.use('/users', usersRouter);
 app.use('/artist', employeesRouter);
 app.use('/appointment', appointmentsRouter);
+//app.use('/desingallery', desingalleryRouter);
 
 app.get('/', (req, res) => {
   res.send('Home PageX');
