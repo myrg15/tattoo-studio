@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import { Appointment } from "../models/Appointment";
-import { Users } from "../models/Users";
+//import { Users } from "../models/Users";
 import { Employees } from "../models/Employees";
 import { AppDataSource } from "../database";
 
@@ -25,29 +25,21 @@ const appointments_get_employees = async (req: Request, res: Response) => {
 }
 
 const appointment_create = async (req: Request, res: Response) => {
-  const { users, employees, portfolio_id, imag, date, time, service, status, } = req.body
+  const { users, date, time} = req.body
   const { token } = req
   const new_appointment = new Appointment();
   if (token.role == 'admin') {
-    new_appointment.employees = token.id
     new_appointment.users= token.id
-    new_appointment.imag= imag
     new_appointment.date= date
     new_appointment.time = time
-    new_appointment.service = service
-    new_appointment.status = status
     const appointment = await AppDataSource.manager.save(new_appointment);
     return res.status(200).json({
       appointment
     })
   }
-  new_appointment.employees = employees
   new_appointment.users = token.id
-  new_appointment.imag= imag
   new_appointment.date= date
   new_appointment.time = time
-  new_appointment.service = service
-  new_appointment.status = status
   const appointment = await AppDataSource.manager.save(new_appointment);
   return res.status(200).json({
     appointment
