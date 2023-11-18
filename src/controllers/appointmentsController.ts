@@ -30,7 +30,7 @@ const appointment_create = async (req: Request, res: Response) => {
   const new_appointment = new Appointment();
   if (token.role == 'admin') {
     new_appointment.employees = token.id
-    new_appointment.users= users
+    new_appointment.users= token.id
     new_appointment.imag= imag
     new_appointment.date= date
     new_appointment.time = time
