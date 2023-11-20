@@ -19,17 +19,21 @@ const appointments_get_all = async (req: Request, res: Response) => {
 
 const appointments_get_employees = async (req: Request, res: Response) => {
   const { token } = req;
-  const employees = token.id
+  const employees = token.users
   const appointments = await appointmentRepository.find()
   res.status(200).json({ appointments })
 }
 
 const appointment_create = async (req: Request, res: Response) => {
-  const { users, date, time} = req.body
+  const { users, employee, desingGallery, date, time} = req.body
   const { token } = req
+
+  console.log(date)
+
+
   const new_appointment = new Appointment();
   if (token.role == 'admin') {
-    new_appointment.users= token.id
+    new_appointment.users= token.users
     new_appointment.date= date
     new_appointment.time = time
     const appointment = await AppDataSource.manager.save(new_appointment);
@@ -37,7 +41,9 @@ const appointment_create = async (req: Request, res: Response) => {
       appointment
     })
   }
-  new_appointment.users = token.id
+  new_appointment.users = token.users
+  new_appointment.employee = employee
+  new_appointment.desingGallery = desingGallery
   new_appointment.date= date
   new_appointment.time = time
   const appointment = await AppDataSource.manager.save(new_appointment);

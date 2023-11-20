@@ -10,10 +10,16 @@ export class Appointment {
     users!: number
 
     @Column()
+    employee!: number
+    
+    @Column()
+    desingGallery! : number
+
+    @Column()
     date!: Date
 
     @Column()
-    time!: Date
+    time!: string
 
     
     @ManyToOne(() => Users, (user) => user.id)

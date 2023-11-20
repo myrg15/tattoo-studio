@@ -142,7 +142,7 @@ const viewappointments = async (req: Request, res: Response) => {
   try {
     const myappointments = await appointmentRepository.findOne  ({
       where: {
-        users : req.token.id
+        users : req.token.users
       }
     })
     return res.json(
