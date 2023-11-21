@@ -26,7 +26,7 @@ export class Desingallery extends BaseEntity {
     @Column()
     updated_at!: Date
 
-    @OneToMany(() => Appointment, (appointment) => appointment.desingallery)
+    @OneToMany(() => Appointment, (appointment) => appointment.id)
     appointments!: Appointment[];
 
 }

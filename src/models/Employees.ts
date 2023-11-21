@@ -3,7 +3,7 @@ import { Users } from "./Users";
 import { Appointment } from "./Appointment";
 
 @Entity("employees")
-export class Employees {
+export class Employees extends BaseEntity{
   @PrimaryGeneratedColumn()
   id!: number;
   
@@ -22,10 +22,10 @@ export class Employees {
   @UpdateDateColumn()
   updated_at!: Date;
 
-  @ManyToOne(() => Users, (user) => user.employess)
+  @ManyToOne(() => Users, (user) => user.id)
   @JoinColumn({ name: "user_id" })
   user!: Users;
 
-  @OneToMany(() => Appointment, (appointment) => appointment.employees)
+  @OneToMany(() => Appointment, (appointment) => appointment.id)
   appointments!: Appointment[];
 }
