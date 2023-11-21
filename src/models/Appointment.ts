@@ -24,16 +24,16 @@ export class Appointment extends BaseEntity {
     @Column()
     time!: string
      
-    @ManyToOne(() => Users, (user) => user.id)
-    @JoinColumn({ name: "users_id" })
-    userAppointment!: Users;
+    @ManyToOne(() => Users, (user) => user.appointment)
+    @JoinColumn({ name: "user_id" })
+    user!: Users;
   
-    @ManyToOne(() => Employees, (employees) => employees.id)
+    @ManyToOne(() => Employees, (employees) => employees.appointment)
     @JoinColumn({ name: "employees_id" })
     employeesAppointment!: Employees; 
   
-    @ManyToOne(() => Desingallery, (desingallery) => desingallery.id)
+    @ManyToOne(() => Desingallery, (desingallery) => desingallery.appointment)
     @JoinColumn({ name: "desingallery_id" })
-    desingalleryAppointment!: Desingallery;
+    desingalleryAppointmente!: Desingallery;
     
 }

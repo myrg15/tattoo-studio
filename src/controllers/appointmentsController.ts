@@ -25,7 +25,7 @@ const appointments_get_employees = async (req: Request, res: Response) => {
 };
 
 const appointment_create = async (req: Request, res: Response) => {
-  const { users, employee, desingGallery, date, time } = req.body;
+  const { users, employees, desingallery, date, time } = req.body;
   const { token } = req;
 
   console.log(date);
@@ -41,8 +41,8 @@ const appointment_create = async (req: Request, res: Response) => {
     });
   }
   new_appointment.users = token.users;
-  new_appointment.employee = employee;
-  new_appointment.desingGallery = desingGallery;
+  new_appointment.employees = employees;
+  new_appointment.desingallery = desingallery;
   new_appointment.date = date;
   new_appointment.time = time;
   const appointment = await AppDataSource.manager.save(new_appointment);
