@@ -1,5 +1,6 @@
 import { BaseEntity, Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, JoinTable, JoinColumn, CreateDateColumn } from "typeorm"
 import { Employees } from "./Employees"
+import { Appointment } from "./Appointment"
 
 @Entity("users")
 export class Users {
@@ -37,6 +38,7 @@ export class Users {
     @CreateDateColumn()
     updated_at!: Date
 
-    @OneToMany ( () => Employees, (employees) => employees.user_id)
+    @OneToMany ( () => Employees, (employees) => employees.id)
     employess! : Employees [];
+
 }

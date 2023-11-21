@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
-export class Appointment1700335980587 implements MigrationInterface {
+export class Appointment1700525747018 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
@@ -19,6 +19,15 @@ export class Appointment1700335980587 implements MigrationInterface {
                   type: "int",
                 },
                 {
+                  name: "employees",
+                  type: "int",
+                },
+                {
+                  name: "desingallery",
+                  type: "int",
+                },
+                
+                {
                   name: "date",
                   type: "timestamp",
                 },
@@ -26,6 +35,7 @@ export class Appointment1700335980587 implements MigrationInterface {
                     name: "time",
                     type: "timestamp",
                 },
+                
               ],
               foreignKeys: [
                 {
@@ -34,11 +44,24 @@ export class Appointment1700335980587 implements MigrationInterface {
                   referencedColumnNames: ["id"],
                   onDelete: "CASCADE",
                 },
+                {
+                  columnNames: ["employees"],
+                  referencedTableName: "employees",
+                  referencedColumnNames: ["id"],
+                  onDelete: "CASCADE",
+                },
+                {
+                  columnNames: ["desingallery"],
+                  referencedTableName: "desingallery",
+                  referencedColumnNames: ["id"],
+                  onDelete: "CASCADE",
+                },
               ],
             }),
             true
           );
     }
+    
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable("appointment");
     }

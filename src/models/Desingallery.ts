@@ -1,4 +1,5 @@
 import { BaseEntity, Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, JoinTable } from "typeorm"
+import { Appointment } from "./Appointment"
 
 
 @Entity("desingallery")
@@ -25,6 +26,7 @@ export class Desingallery extends BaseEntity {
     @Column()
     updated_at!: Date
 
-
+    @OneToMany(() => Appointment, (appointment) => appointment.desingallery)
+    appointments!: Appointment[];
 
 }
