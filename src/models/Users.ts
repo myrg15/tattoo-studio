@@ -1,9 +1,8 @@
 import { BaseEntity, Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, JoinTable, JoinColumn, CreateDateColumn } from "typeorm"
-//import { Employees } from "./Employees"
-import { Appointment } from "./Appointment"
+import { Employees } from "./Employees"
 
 @Entity("users")
-export class Users extends BaseEntity {
+export class Users {
     @PrimaryGeneratedColumn()
     id!: number
   
@@ -17,18 +16,18 @@ export class Users extends BaseEntity {
     password!: string
   
     @Column({
-    default: 'active'
+        default: 'active'
     })
     status!: string
     
     @Column({ 
-    enum: ['admin', 'user', 'super_admin'], 
-    default: 'user' 
+        enum: ['admin', 'user', 'super_admin'], 
+        default: 'user' 
     })
     role!: string
 
     @Column({
-    nullable : true
+        nullable : true
     })
     phone_number!: string;
     
@@ -38,7 +37,6 @@ export class Users extends BaseEntity {
     @CreateDateColumn()
     updated_at!: Date
 
-    @OneToMany ( () => Appointment, appointment => appointment.users)
-    appointment! : Appointment [];
-
+    @OneToMany ( () => Employees, (employees) => employees.user_id)
+    employess! : Employees [];
 }

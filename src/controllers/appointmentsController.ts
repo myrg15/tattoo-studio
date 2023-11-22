@@ -1,11 +1,13 @@
 import { Response, Request } from "express";
 import { Appointment } from "../models/Appointment";
-//import { Users } from "../models/Users";
+import { Users } from "../models/Users";
 import { Employees } from "../models/Employees";
 import { AppDataSource } from "../database";
 
 const appointmentRepository = AppDataSource.getRepository(Appointment);
-
+const userRepository = AppDataSource.getRepository(Users)
+const employeeRepository = AppDataSource.getRepository(Employees)
+ 
 const appointments_get_all = async (req: Request, res: Response) => {
   const { token } = req;
   if (token.role !== "admin") {
@@ -94,8 +96,11 @@ const get_appointment_by_id = async (req: Request, res: Response) => {
 
   const appointments = await appointmentRepository.findBy({ users });
 
+
   res.status(200).json({ appointments });
 };
+
+
 export {
   appointments_get_employees,
   appointment_create,

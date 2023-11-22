@@ -1,18 +1,13 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { Users } from "./Users";
-import { Appointment } from "./Appointment";
-import { Desingallery } from "./Desingallery";
 
 @Entity("employees")
-export class Employees extends BaseEntity{
+export class Employees {
   @PrimaryGeneratedColumn()
   id!: number;
   
   @Column()
   user_id!: number;
-
-  @Column()
-  desingallery!: number;
 
   @Column()
   specialty_services!: string;
@@ -26,7 +21,7 @@ export class Employees extends BaseEntity{
   @UpdateDateColumn()
   updated_at!: Date;
 
-  @OneToMany(() => Appointment, (appointment) => appointment.employees)
-  appointment!: Appointment [];
-
+  @ManyToOne(() => Users, (user) => user.employess)
+  @JoinColumn({ name: "user_id" })
+  user!: Users;
 }
