@@ -10,8 +10,10 @@ const employeeRepository = AppDataSource.getRepository(Employees)
  
 const appointments_get_all = async (req: Request, res: Response) => {
   const { token } = req;
-  if (token.role !== "admin") {
-    res.status(401).json({ message: "No auth" });
+
+
+  if (token.role !== "super_admin") {
+    return res.status(401).json({ message: "No auth" });
   }
   const appointments = await appointmentRepository.find();
   res.status(200).json({

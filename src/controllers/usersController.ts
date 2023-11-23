@@ -11,6 +11,13 @@ const userRepository = AppDataSource.getRepository(Users);
 const appointmentRepository = AppDataSource.getRepository(Appointment);
 const employeesRepository = AppDataSource.getRepository(Employees)
 
+
+const getAllUser = async(req: Request, res:Response) => {
+    const users = await userRepository.find()
+
+    res.status(200).json({ users  })
+}
+
 const register = async (req: Request, res: Response) => {
   const { username, email, password, role, specialtyServices, phone } = req.body
   try {
@@ -182,4 +189,4 @@ const getEmployees = async (req: Request, res: Response) => {
     });
   }
 }
-export { register, login, profile, update, viewappointments, getEmployees }
+export { register, login, profile, update, viewappointments, getEmployees, getAllUser }
