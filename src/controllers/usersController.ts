@@ -83,7 +83,7 @@ const login = async (req: Request, res: Response) => {
   },
     process.env.JWT_SECRET as string,
     {
-      expiresIn: '3h',
+      expiresIn: '7d',
     });
   return res.json({
     success: true,

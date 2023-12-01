@@ -57,6 +57,7 @@ const appointment_create = async (req: Request, res: Response) => {
 
 const appointment_update = async (req: Request, res: Response) => {
   const { id } = req.params;
+  console.log(req.body)
   const appointmentRepository = AppDataSource.getRepository(Appointment);
   const appointment = await appointmentRepository.findOneBy({
     id: parseInt(id),
